@@ -15,11 +15,12 @@ def listenForCmd():
 	
 	with sr.Microphone() as source:
 		print("Hello. i am SASHA. i'm online and ready")
+		r.pause_threshold = 1
 		r.adjust_for_ambient_noise(source, duration = 1)
 		audio = r.listen(source)
 		
 	try:
-		command = r.recognize_google(audio)
+		command = r.recognize_google(audio).lower()
 		print(command)
 	
 	except sr.UnknownValueError:
@@ -28,15 +29,14 @@ def listenForCmd():
 		
 	return command
 	
-command = listenForCmd()
+#command = listenForCmd()
 
-def cmd():
-	if "hey" in command:
+def cmd(command):
+	if "sasha" in command:
 		os.system('start sounds/Bidding.mp3')
 
 talk("ready when you are")
 
 while True:
-	listenForCmd()
-	cmd()
+	cmd(listenForCmd())
 	time.sleep(3)
