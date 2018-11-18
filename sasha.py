@@ -1,13 +1,15 @@
-from gtts import gTTS
+#from gtts import gTTS
 import speech_recognition as sr
 import os
 import time 
 import webbrowser
+import winspeech 
 
 def talk(audio):
-	tts=gTTS(text=audio,lang ="en" )
-	tts.save("file1.mp3")
-	os.system("start file1.mp3")
+	#tts=gTTS(text=audio,lang ="en" )
+	#tts.save("file1.mp3")
+	#os.system("start file1.mp3")
+	winspeech.say(audio)
 	
 def listenForCmd():
 
