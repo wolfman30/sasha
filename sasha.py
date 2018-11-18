@@ -4,6 +4,7 @@ import os
 import time 
 import webbrowser
 import winspeech 
+import simpleaudio as sa
 
 def talk(audio):
 	#tts=gTTS(text=audio,lang ="en" )
@@ -23,9 +24,10 @@ def listenForCmd():
 		
 	try:
 		command = r.recognize_google(audio).lower()
-		print(command)
+		print("Your command:", command)
 	
 	except sr.UnknownValueError:
+		time.sleep(5)
 		print("the mic isnt working right... i didnt hear any command")
 		command =listenForCmd()
 		
@@ -36,9 +38,18 @@ def listenForCmd():
 def cmd(command):
 	if "sasha" in command:
 		os.system('start sounds/Bidding.mp3')
+		
+	elif "you're weird" in command:
+		wave_obj = sa.WaveObject.from_wave_file("C:/Users/wolfp/Desktop/Sasha/modified/sounds/eatmyshorts.wav")
+		play_obj = wave_obj.play()
+		play_obj.wait_done()
+
+	#stops the python program
+	elif "stop" in command:
+		quit()
 
 talk("ready when you are")
 
 while True:
 	cmd(listenForCmd())
-	time.sleep(3)
+	time.sleep(2)
