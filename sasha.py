@@ -5,11 +5,10 @@ import time
 import webbrowser
 import winspeech 
 import simpleaudio as sa
+import pygame
+from pygame import mixer
 
 def talk(audio):
-	#tts=gTTS(text=audio,lang ="en" )
-	#tts.save("file1.mp3")
-	#os.system("start file1.mp3")
 	winspeech.say(audio)
 	
 def listenForCmd():
@@ -27,17 +26,34 @@ def listenForCmd():
 		print("Your command:", command)
 	
 	except sr.UnknownValueError:
-		time.sleep(5)
+		#time.sleep(5)
 		print("the mic isnt working right... i didnt hear any command")
-		command =listenForCmd()
+		command = listenForCmd()
 		
 	return command
 	
 #command = listenForCmd()
 
 def cmd(command):
-	if "sasha" in command:
-		os.system('start sounds/Bidding.mp3')
+	
+	if "what up" in command:
+		mixer.init()
+		mixer.music.load("C:/Users/wolfp/Desktop/Sasha/modified/Bidding.mp3")
+		mixer.music.play()
+		while mixer.music.get_busy():
+			pygame.time.Clock().tick(10)
+
+		mixer.quit()
+
+	elif "defeated by victory" in command:
+		mixer.init()
+		mixer.music.load("C:/Users/wolfp/Desktop/Sasha/modified/sounds/defeated_by_victory.ogg")
+		mixer.music.play()
+		while mixer.music.get_busy():
+			pygame.time.Clock().tick(10)
+
+		mixer.quit()
+		
 		
 	elif "you're weird" in command:
 		wave_obj = sa.WaveObject.from_wave_file("C:/Users/wolfp/Desktop/Sasha/modified/sounds/eatmyshorts.wav")
@@ -52,4 +68,4 @@ talk("ready when you are")
 
 while True:
 	cmd(listenForCmd())
-	time.sleep(2)
+	#time.sleep(2)
