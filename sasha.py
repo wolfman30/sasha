@@ -31,13 +31,15 @@ def listenForCmd():
 		command = listenForCmd()
 		
 	return command
-	
-#command = listenForCmd()
+#the audio quality for the shakespeare.ogg and 
+# and the deafeated_by_victory.ogg is poor
+#so I will have to find audio files that work best
+#with pygame.mixer.music() module
+#Though it does solve the "opening-other-program" problem
 
-def cmd(command):
+def cmd(command): #function for playing user's commands
 	mixer.init()
 	if "what up" in command:
-		#mixer.init()
 		mixer.music.load("C:/Users/wolfp/Desktop/Sasha/modified/Bidding.mp3")
 		mixer.music.play()
 		while mixer.music.get_busy():
@@ -46,7 +48,6 @@ def cmd(command):
 		mixer.quit()
 
 	elif "defeated by victory" in command:
-		#mixer.init()
 		mixer.music.load("C:/Users/wolfp/Desktop/Sasha/modified/sounds/defeated_by_victory.ogg")
 		mixer.music.play()
 		while mixer.music.get_busy():
@@ -55,7 +56,7 @@ def cmd(command):
 		mixer.quit()
 
 	elif "shakespeare" in command:
-		mixer.music.load("C:/Users/wolfp/Desktop/Sasha/modified/sounds/shakespeare.ogg")
+		mixer.music.load("C:/Users/wolfp/Desktop/Sasha/modified/sounds/shakespeare.mp3")
 		mixer.music.play()
 		while mixer.music.get_busy():
 			pygame.time.Clock().tick(10)
