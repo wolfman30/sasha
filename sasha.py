@@ -35,9 +35,9 @@ def listenForCmd():
 #command = listenForCmd()
 
 def cmd(command):
-	
+	mixer.init()
 	if "what up" in command:
-		mixer.init()
+		#mixer.init()
 		mixer.music.load("C:/Users/wolfp/Desktop/Sasha/modified/Bidding.mp3")
 		mixer.music.play()
 		while mixer.music.get_busy():
@@ -46,8 +46,16 @@ def cmd(command):
 		mixer.quit()
 
 	elif "defeated by victory" in command:
-		mixer.init()
+		#mixer.init()
 		mixer.music.load("C:/Users/wolfp/Desktop/Sasha/modified/sounds/defeated_by_victory.ogg")
+		mixer.music.play()
+		while mixer.music.get_busy():
+			pygame.time.Clock().tick(10)
+
+		mixer.quit()
+
+	elif "shakespeare" in command:
+		mixer.music.load("C:/Users/wolfp/Desktop/Sasha/modified/sounds/shakespeare.ogg")
 		mixer.music.play()
 		while mixer.music.get_busy():
 			pygame.time.Clock().tick(10)
