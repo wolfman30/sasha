@@ -31,47 +31,63 @@ def listenForCmd():
 		command = listenForCmd()
 		
 	return command
-#the audio quality for the shakespeare.ogg and 
-# and the deafeated_by_victory.ogg is poor
-#so I will have to find audio files that work best
-#with pygame.mixer.music() module
-#Though it does solve the "opening-other-program" problem
+#The pitch was controlled by the freqency argument in mixer.init(). So I just set that higher
 
 def cmd(command): #function for playing user's commands
-	mixer.init()
+	
+
 	if "what up" in command:
-		mixer.music.load("C:/Users/wolfp/Desktop/Sasha/modified/Bidding.mp3")
+		mixer.init()
+		mixer.music.load("C:/Users/wolfp/Desktop/Sasha/modified/sounds/Bidding.mp3")
 		mixer.music.play()
 		while mixer.music.get_busy():
 			pygame.time.Clock().tick(10)
 
-		mixer.quit()
 
 	elif "defeated by victory" in command:
+		mixer.init(frequency = 30000)
 		mixer.music.load("C:/Users/wolfp/Desktop/Sasha/modified/sounds/defeated_by_victory.ogg")
 		mixer.music.play()
 		while mixer.music.get_busy():
 			pygame.time.Clock().tick(10)
 
-		mixer.quit()
-
+		
 	elif "shakespeare" in command:
-		mixer.music.load("C:/Users/wolfp/Desktop/Sasha/modified/sounds/shakespeare.mp3")
+		mixer.init(frequency = 30000)
+		mixer.music.load("C:/Users/wolfp/Desktop/Sasha/modified/sounds/shakespeare (1).ogg")
 		mixer.music.play()
 		while mixer.music.get_busy():
-			pygame.time.Clock().tick(10)
-
-		mixer.quit()
+			pygame.time.Clock().tick(13)
 		
 		
 	elif "you're weird" in command:
-		wave_obj = sa.WaveObject.from_wave_file("C:/Users/wolfp/Desktop/Sasha/modified/sounds/eatmyshorts.wav")
-		play_obj = wave_obj.play()
-		play_obj.wait_done()
+		mixer.init()
+		mixer.music.load("C:/Users/wolfp/Desktop/Sasha/modified/sounds/eatmyshorts.wav")
+		mixer.music.play()
+		while mixer.music.get_busy():
+			pygame.time.Clock().tick(1)
+
+	elif 'listen here' in command: 
+		mixer.init(frequency = 30000)
+		mixer.music.load("C:/Users/wolfp/Desktop/Sasha/modified/sounds/listening.mp3")
+		mixer.music.play()
+		while mixer.music.get_busy():
+			pygame.time.Clock().tick(1)
+
+		#mixer.quit()
+	
+	elif 'victory' in command: 
+		mixer.init(frequency = 30000)
+		mixer.music.load("C:/Users/wolfp/Desktop/Sasha/modified/sounds/yay.mp3")
+		mixer.music.play()
+		while mixer.music.get_busy():
+			pygame.time.wait(5)
 
 	#stops the python program
 	elif "stop" in command:
 		quit()
+
+	mixer.quit()
 
 talk("ready when you are")
 
