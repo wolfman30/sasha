@@ -1,4 +1,3 @@
-#from gtts import gTTS
 import speech_recognition as sr
 import os
 import time 
@@ -7,6 +6,7 @@ import winspeech
 import simpleaudio as sa
 import pygame
 from pygame import mixer
+from email import send_email
 
 def talk(audio):
 	winspeech.say(audio)
@@ -26,7 +26,6 @@ def listenForCmd():
 		print("Your command:", command)
 	
 	except sr.UnknownValueError:
-		#time.sleep(5)
 		print("the mic isnt working right... i didnt hear any command")
 		command = listenForCmd()
 		
@@ -35,7 +34,6 @@ def listenForCmd():
 
 def cmd(command): #function for playing user's commands
 	
-
 	if "what up" in command:
 		mixer.init()
 		mixer.music.load("C:/Users/wolfp/Desktop/Sasha/modified/sounds/Bidding.mp3")
@@ -73,8 +71,7 @@ def cmd(command): #function for playing user's commands
 		mixer.music.play()
 		while mixer.music.get_busy():
 			pygame.time.Clock().tick(1)
-
-		#mixer.quit()
+		
 	
 	elif 'victory' in command: 
 		mixer.init(frequency = 30000)
@@ -83,14 +80,10 @@ def cmd(command): #function for playing user's commands
 		while mixer.music.get_busy():
 			pygame.time.wait(5)
 
-	#stops the python program
-	elif "stop" in command:
-		quit()
-
 	mixer.quit()
-
+	
 talk("ready when you are")
 
 while True:
 	cmd(listenForCmd())
-	#time.sleep(2)
+	send_email(listenForCmd())
