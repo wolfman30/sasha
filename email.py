@@ -30,10 +30,10 @@ def send_email(command):
             mail.starttls()
 
             #login
-            mail.login('username@gmail.com', 'password')
+            mail.login('YourEmail@gmail.com', 'password')
 
             #send message contained in variable msg
-            mail.sendmail(email_whoever[command][0], email_whoever[command][1], message)
+            mail.sendmail(yourEmailAdress@gmail.com, email_whoever[command][0], message)
 
             #close mail connection
             mail.close()
