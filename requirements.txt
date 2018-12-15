@@ -1,0 +1,3 @@
+winspeech==?
+python==3.6.6
+pygame==?
